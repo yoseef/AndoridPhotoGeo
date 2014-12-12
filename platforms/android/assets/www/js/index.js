@@ -1,21 +1,3 @@
-/*
- * Licensed to the Apache Software Foundation (ASF) under one
- * or more contributor license agreements.  See the NOTICE file
- * distributed with this work for additional information
- * regarding copyright ownership.  The ASF licenses this file
- * to you under the Apache License, Version 2.0 (the
- * "License"); you may not use this file except in compliance
- * with the License.  You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing,
- * software distributed under the License is distributed on an
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- * KIND, either express or implied.  See the License for the
- * specific language governing permissions and limitations
- * under the License.
- */
 var app = {
     // Application Constructor
     initialize: function () {
@@ -37,34 +19,89 @@ var app = {
     },
     // Update DOM on a Received Event
     receivedEvent: function () {
-        /*var parentElement = document.getElementById(id);
-         var listeningElement = parentElement.querySelector('.listening');
-         var receivedElement = parentElement.querySelector('.received');
-         
-         listeningElement.setAttribute('style', 'display:none;');
-         receivedElement.setAttribute('style', 'display:block;');
-         
-         console.log('Received Event: ' + id);
-         */        
-         
-        var button = document.getElementById('btn');
-        button.addEventListener('click', function () {
-            navigator.camera.getPicture(onSuccess, onFail, {
-                destinationType: Camera.DestinationType.DATA_URL
-                        //quality: 100,
-                        //targetWidth: 400,
-                        //targetHeight: 500,
-                        //destinationType: Camera.DestinationType.DATA_URL,
-                        //correctOrientation: true
-            });
-        }, false);
-        function onSuccess(imageData) {            
-             var image = document.getElementById('pht');
-            image.src="data:image/jpeg;base64,"+imageData;
-        }
-        function onFail(message) {
-            alert('Failed cause: ' + message);
-        }
+        ferFoto;
     }
 };
-app.initialize();
+var ferFoto = function () {
+    var button = document.getElementById('btn');
+    button.addEventListener('click', function () {
+        navigator.camera.getPicture(onSuccess, onFail, {
+            destinationType: Camera.DestinationType.DATA_URL
+                    //quality: 100,
+                    //targetWidth: 400,
+                    //targetHeight: 500,
+                    //destinationType: Camera.DestinationType.DATA_URL,
+                    //correctOrientation: true
+        });
+    }, false);
+    function onSuccess(imageData) {
+        //es mostra la imatge a la pantalla
+        var image = document.getElementById('pht');
+        image.src = "data:image/jpeg;base64," + imageData;
+        //mostra el botp per pujar la foto
+        var uploadPhotoBtn = document.createElement('button');
+        uploadPhotoBtn.setAttribute("id", "upImage");
+        uploadPhotoBtn.innerHTML = "upload photo";
+        var cam = document.getElementById('cam');
+        cam.appendChild(uploadPhotoBtn);
+        
+        var fileURI = image.src;
+        
+        uploadPhotoBtn.addEventListener("click",uploadPhoto(fileURI),false);
+    }
+    function onFail(message) {
+        alert('Failed cause: ' + message);
+    }
+};
+function uploadPhoto(fileURI) {
+    var options = new FileUploadOptions();
+    options.fileKey = "file";
+    options.fileName = fileURI.substr(fileURI.lastIndexOf('/') + 1);
+
+    if (cordova.platformId === "android") {
+     //   options.fileName += ".jpg";
+    }
+
+    options.mimeType = "image/jpeg";
+    options.params = {}; // if we need to send parameters to the server request 
+    options.headers = {
+        Connection: "Close"
+    };
+    options.chunkedMode = false;
+
+    var ft = new FileTransfer();
+    ft.upload(
+            fileURI,
+            encodeURI("http://www.filedropper.com"),
+            onFileUploadSuccess,
+            onFileTransferFail,
+            options);
+
+    function onFileUploadSuccess(result) {
+        console.log("FileTransfer.upload");
+        console.log("Code = " + result.responseCode);
+        console.log("Response = " + result.response);
+        console.log("Sent = " + result.bytesSent);
+        console.log("Link to uploaded file: http://www.filedropper.com" + result.response);
+        var response = result.response;
+        var destination = "http://www.filedropper.com/" + response.substr(response.lastIndexOf('=') + 1);
+        alert("File uploaded to: " + destination);
+        var openPhoto = document.createElement('button');
+        openPhoto.setAttribute('onclick', "window.open('" + destination + "', '_blank', 'location=yes')");
+        openPhoto.innerHTML = "Open Location";
+        var cam = document.getElementById('cam');
+        cam.appendChild(openPhoto);
+        document.getElementById("upImage").style.display = "none";
+        //document.getElementById("result").innerHTML = "File uploaded to: " +  destination + "</br><button onclick=\"window.open('" + destination + "', '_blank', 'location=yes')\">Open Location</button>";
+
+    }
+
+    function onFileTransferFail(error) {
+        console.log("FileTransfer Error:");
+        console.log("Code: " + error.code);
+        console.log("Source: " + error.source);
+        console.log("Target: " + error.target);
+    }
+}
+
+

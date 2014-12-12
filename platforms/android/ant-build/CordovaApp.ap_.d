@@ -46,9 +46,9 @@
 /home/yosef/NetBeansProjects/Camera/platforms/android/assets/www/plugins/org.apache.cordova.camera/www/Camera.js \
 /home/yosef/NetBeansProjects/Camera/platforms/android/assets/www/plugins/org.apache.cordova.camera/www/CameraPopoverOptions.js \
 /home/yosef/NetBeansProjects/Camera/platforms/android/assets/www/plugins/org.apache.cordova.camera/www/CameraConstants.js \
-/home/yosef/NetBeansProjects/Camera/platforms/android/assets/www/img/logo.png \
 /home/yosef/NetBeansProjects/Camera/platforms/android/assets/www/js/libs \
 /home/yosef/NetBeansProjects/Camera/platforms/android/assets/www/js/index.js \
+/home/yosef/NetBeansProjects/Camera/platforms/android/assets/www/js/indexbck.js \
 /home/yosef/NetBeansProjects/Camera/platforms/android/assets/www/js/libs/jquery \
 /home/yosef/NetBeansProjects/Camera/platforms/android/assets/www/js/libs/jquery/jquery.js \
 /home/yosef/NetBeansProjects/Camera/platforms/android/assets/www/css/index.css \
