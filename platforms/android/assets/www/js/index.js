@@ -1,4 +1,4 @@
-var app = {
+app = {
     // Application Constructor
     initialize: function () {
         this.bindEvents();
@@ -15,12 +15,21 @@ var app = {
     // The scope of 'this' is the event. In order to call the 'receivedEvent'
     // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function () {
-        app.receivedEvent();
+        var locateme = document.createElement('button');
+        locateme.setAttribute("id", "getLocation");
+        locateme.innerHTML = "get Location";
+        var cam = document.getElementById('cam');
+        cam.appendChild(locateme);
+        locateme.addEventListener('click', obtenirCoordenades, false);
+
+        ferFoto();
+        //app.receivedEvent();
     },
     // Update DOM on a Received Event
     receivedEvent: function () {
-        ferFoto;
+        //ferFoto;
     }
+
 };
 var ferFoto = function () {
     var button = document.getElementById('btn');
@@ -44,22 +53,49 @@ var ferFoto = function () {
         uploadPhotoBtn.innerHTML = "upload photo";
         var cam = document.getElementById('cam');
         cam.appendChild(uploadPhotoBtn);
-        
+
         var fileURI = image.src;
-        
-        uploadPhotoBtn.addEventListener("click",uploadPhoto(fileURI),false);
+
+        //uploadPhotoBtn.addEventListener("click", uploadPhoto(fileURI), false);
     }
     function onFail(message) {
         alert('Failed cause: ' + message);
     }
 };
+var obtenirCoordenades = function () {
+    alert('buscant ubicacio...');
+    watchID = navigator.geolocation.watchPosition(gotPosition, geolocationError, {maximumAge: 5000, timeout: 60000, enableHighAccuracy: true});
+    /*
+     navigator.geolocation.getCurrentPosition(geolocationSuccess, geolocationError,
+     {maximumAge: 3000, timeout: 5000, enableHighAccuracy: true});
+     var geolocationSuccess = function (position) {
+     alert('Latitude: ' + position.coords.latitude + '\n' +
+     'Longitude: ' + position.coords.longitude + '\n' +
+     'Altitude: ' + position.coords.altitude);
+     };
+     */
+    function geolocationError(error) {
+        alert('code: ' + error.code + '\n' +
+                'message: ' + error.message + '\n');
+    }
+};
+function gotPosition(position) {
+    var ele = document.getElementById('geoo');
+    ele.innerText = position.coords.latitude + ' , ' + position.coords.longitude;
+    //ele.setAttribute("alt", position.coords.latitude + ' ' + position.coords.longitude);
+
+    /*alert('Latitude: ' + position.coords.latitude + '\n' +
+     'Longitude: ' + position.coords.longitude + '\n');*/
+}
+
 function uploadPhoto(fileURI) {
+    alert('He arribat aqui, es pujara la imatge al servidor!');
     var options = new FileUploadOptions();
     options.fileKey = "file";
     options.fileName = fileURI.substr(fileURI.lastIndexOf('/') + 1);
 
     if (cordova.platformId === "android") {
-     //   options.fileName += ".jpg";
+        //   options.fileName += ".jpg";
     }
 
     options.mimeType = "image/jpeg";
@@ -103,5 +139,4 @@ function uploadPhoto(fileURI) {
         console.log("Target: " + error.target);
     }
 }
-
-
+app.initialize();

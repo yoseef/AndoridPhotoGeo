@@ -45,8 +45,8 @@ var app = {
          receivedElement.setAttribute('style', 'display:block;');
          
          console.log('Received Event: ' + id);
-         */        
-         
+         */
+
         var button = document.getElementById('btn');
         button.addEventListener('click', function () {
             navigator.camera.getPicture(onSuccess, onFail, {
@@ -58,9 +58,9 @@ var app = {
                         //correctOrientation: true
             });
         }, false);
-        function onSuccess(imageData) {            
-             var image = document.getElementById('pht');
-            image.src="data:image/jpeg;base64,"+imageData;
+        function onSuccess(imageData) {
+            var image = document.getElementById('pht');
+            image.src = "data:image/jpeg;base64," + imageData;
         }
         function onFail(message) {
             alert('Failed cause: ' + message);
