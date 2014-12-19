@@ -77,6 +77,7 @@
 /home/yosef/NetBeansProjects/Camera/platforms/android/assets/www/js/libs \
 /home/yosef/NetBeansProjects/Camera/platforms/android/assets/www/js/index.js \
 /home/yosef/NetBeansProjects/Camera/platforms/android/assets/www/js/indexbck.js \
+/home/yosef/NetBeansProjects/Camera/platforms/android/assets/www/js/dbconexio.js \
 /home/yosef/NetBeansProjects/Camera/platforms/android/assets/www/js/libs/jquery \
 /home/yosef/NetBeansProjects/Camera/platforms/android/assets/www/js/libs/jquery/jquery.js \
 /home/yosef/NetBeansProjects/Camera/platforms/android/assets/www/css/index.css \

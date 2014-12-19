@@ -6,6 +6,12 @@
 /home/yosef/NetBeansProjects/Camera/platforms/android/ant-build/classes/com/coolappz/Camera/BuildConfig.class \
 /home/yosef/NetBeansProjects/Camera/platforms/android/ant-build/classes/com/coolappz/Camera/R$attr.class \
 /home/yosef/NetBeansProjects/Camera/platforms/android/ant-build/classes/com/coolappz/Camera/R.class \
+/home/yosef/NetBeansProjects/Camera/platforms/android/ant-build/classes/org/pgsqlite/SQLitePlugin$Action.class \
+/home/yosef/NetBeansProjects/Camera/platforms/android/ant-build/classes/org/pgsqlite/SQLitePlugin$1.class \
+/home/yosef/NetBeansProjects/Camera/platforms/android/ant-build/classes/org/pgsqlite/SQLitePlugin$QueryType.class \
+/home/yosef/NetBeansProjects/Camera/platforms/android/ant-build/classes/org/pgsqlite/SQLitePlugin$DBRunner.class \
+/home/yosef/NetBeansProjects/Camera/platforms/android/ant-build/classes/org/pgsqlite/SQLitePlugin.class \
+/home/yosef/NetBeansProjects/Camera/platforms/android/ant-build/classes/org/pgsqlite/SQLitePlugin$DBQuery.class \
 /home/yosef/NetBeansProjects/Camera/platforms/android/ant-build/classes/org/apache/cordova/dialogs/Notification$2$2.class \
 /home/yosef/NetBeansProjects/Camera/platforms/android/ant-build/classes/org/apache/cordova/dialogs/Notification$3$2.class \
 /home/yosef/NetBeansProjects/Camera/platforms/android/ant-build/classes/org/apache/cordova/dialogs/Notification$5$1.class \

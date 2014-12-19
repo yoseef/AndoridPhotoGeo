@@ -1,6 +1,6 @@
 app = {
     // Application Constructor
-    initialize: function () {
+    init: function () {
         this.bindEvents();
     },
     // Bind Event Listeners
@@ -21,8 +21,14 @@ app = {
         var cam = document.getElementById('cam');
         cam.appendChild(locateme);
         locateme.addEventListener('click', obtenirCoordenades, false);
-
+        
+        var mostrarDades = document.createElement('button');
+        mostrarDades.innerHTML = "mostrar dades";
+        //mostrarDades.addEventListener('click', mostrarLesDadesSql(), false);
+        cam.appendChild(mostrarDades);
+        
         ferFoto();
+
         //app.receivedEvent();
     },
     // Update DOM on a Received Event
@@ -31,22 +37,43 @@ app = {
     }
 
 };
+function imatge(idImatge, titol, image, descripcio, latitude, longitude) {
+    this.idImatge = idImatge,
+            this.titol = titol,
+            this.image = image,
+            this.descripcio = descripcio,
+            this.lat = latitude;
+    this.long = longitude;
+}
+;
+
 var ferFoto = function () {
+
     var button = document.getElementById('btn');
     button.addEventListener('click', function () {
-        navigator.camera.getPicture(onSuccess, onFail, {
-            destinationType: Camera.DestinationType.DATA_URL
-                    //quality: 100,
-                    //targetWidth: 400,
-                    //targetHeight: 500,
-                    //destinationType: Camera.DestinationType.DATA_URL,
-                    //correctOrientation: true
-        });
+        navigator.camera.getPicture(onSuccess, onFail, {destinationType: Camera.DestinationType.DATA_URL});
     }, false);
     function onSuccess(imageData) {
         //es mostra la imatge a la pantalla
         var image = document.getElementById('pht');
         image.src = "data:image/jpeg;base64," + imageData;
+        var pos = obtenirCoordenades();
+
+        //var localitzacio = obtenirCoordenades();
+        /* var ele = document.getElementById('geoo');
+         ele.innerText = position.coords.latitude + ' , ' + position.coords.longitude;*/
+
+        var newImatge = new imatge(
+                1,
+                "prova",
+                image.src,
+                "comentari",
+                pos.coords.latitude,
+                pos.coords.longitude);
+
+
+        insertarAlSql(newImatge);
+
         //mostra el botp per pujar la foto
         var uploadPhotoBtn = document.createElement('button');
         uploadPhotoBtn.setAttribute("id", "upImage");
@@ -62,31 +89,41 @@ var ferFoto = function () {
         alert('Failed cause: ' + message);
     }
 };
+var insertarAlSql = function (imatge) {
+    alert('insertant dades...');
+    db_insert(imatge);
+
+};
+var mostrarLesDadesSql = function () {
+    alert('carregant dades...');
+    var imatges = db_select();
+    var cam = document.getElementById('cam');
+    for (imatge in imatges) {
+        cam.innerHTML += imatge.idImatge + '<br>' + imatge.image + '<br>' + imatge.descripcio + '<br>' + imatge.lat + ',' + imatge.long + '<br>';
+    }
+
+};
 var obtenirCoordenades = function () {
     alert('buscant ubicacio...');
-    watchID = navigator.geolocation.watchPosition(gotPosition, geolocationError, {maximumAge: 5000, timeout: 60000, enableHighAccuracy: true});
-    /*
-     navigator.geolocation.getCurrentPosition(geolocationSuccess, geolocationError,
-     {maximumAge: 3000, timeout: 5000, enableHighAccuracy: true});
-     var geolocationSuccess = function (position) {
-     alert('Latitude: ' + position.coords.latitude + '\n' +
-     'Longitude: ' + position.coords.longitude + '\n' +
-     'Altitude: ' + position.coords.altitude);
-     };
-     */
-    function geolocationError(error) {
+    //var mylocation = null;
+    var onSuccess = function (position) {
+        //alert(position.coords.latitude + ' , ' + position.coords.longitude);
+        var ele = document.getElementById('geoo');
+        ele.innerText = position.coords.latitude + ' , ' + position.coords.longitude;
+        return position;
+        //  mylocation = position.coords.latitude + ' , ' + position.coords.longitude;
+    };
+
+    function onError(error) {
         alert('code: ' + error.code + '\n' +
                 'message: ' + error.message + '\n');
     }
-};
-function gotPosition(position) {
-    var ele = document.getElementById('geoo');
-    ele.innerText = position.coords.latitude + ' , ' + position.coords.longitude;
-    //ele.setAttribute("alt", position.coords.latitude + ' ' + position.coords.longitude);
 
-    /*alert('Latitude: ' + position.coords.latitude + '\n' +
-     'Longitude: ' + position.coords.longitude + '\n');*/
-}
+    navigator.geolocation.getCurrentPosition(onSuccess, onError, {maximumAge: 5000, timeout: 60000, enableHighAccuracy: true});   
+
+    //watchID = navigator.geolocation.watchPosition(onSuccess, onError, {maximumAge: 5000, timeout: 60000, enableHighAccuracy: true});
+};
+
 
 function uploadPhoto(fileURI) {
     alert('He arribat aqui, es pujara la imatge al servidor!');
@@ -139,4 +176,4 @@ function uploadPhoto(fileURI) {
         console.log("Target: " + error.target);
     }
 }
-app.initialize();
+app.init();
