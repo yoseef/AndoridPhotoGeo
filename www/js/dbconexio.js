@@ -1,5 +1,6 @@
 
 function db_insert(imatge) {
+    alert('insertant dades...');
     var db = openDatabase('imageDB', '1.0', 'My Sample DB', 100 * 1024);
 
     db.transaction(function (tx) {
@@ -14,7 +15,6 @@ function db_insert(imatge) {
     function successCB(){
         alert('S \'ha insertat les dades');
     };
-
 }
 
 function db_select() {

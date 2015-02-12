@@ -118,7 +118,7 @@ var obtenirCoordenades = function () {
     }
 
     navigator.geolocation.getCurrentPosition(onSuccess, onError, {maximumAge: 5000, timeout: 60000, enableHighAccuracy: true});   
-
+    
     //watchID = navigator.geolocation.watchPosition(onSuccess, onError, {maximumAge: 5000, timeout: 60000, enableHighAccuracy: true});
 };
 

@@ -41,6 +41,7 @@
 /home/yosef/NetBeansProjects/Camera/platforms/android/assets/www/index.html \
 /home/yosef/NetBeansProjects/Camera/platforms/android/assets/www/css \
 /home/yosef/NetBeansProjects/Camera/platforms/android/assets/www/plugins/org.apache.cordova.camera \
+/home/yosef/NetBeansProjects/Camera/platforms/android/assets/www/plugins/com.brodysoft.sqlitePlugin \
 /home/yosef/NetBeansProjects/Camera/platforms/android/assets/www/plugins/org.apache.cordova.file-transfer \
 /home/yosef/NetBeansProjects/Camera/platforms/android/assets/www/plugins/org.apache.cordova.file \
 /home/yosef/NetBeansProjects/Camera/platforms/android/assets/www/plugins/org.apache.cordova.camera/www \
@@ -48,6 +49,8 @@
 /home/yosef/NetBeansProjects/Camera/platforms/android/assets/www/plugins/org.apache.cordova.camera/www/Camera.js \
 /home/yosef/NetBeansProjects/Camera/platforms/android/assets/www/plugins/org.apache.cordova.camera/www/CameraPopoverOptions.js \
 /home/yosef/NetBeansProjects/Camera/platforms/android/assets/www/plugins/org.apache.cordova.camera/www/CameraConstants.js \
+/home/yosef/NetBeansProjects/Camera/platforms/android/assets/www/plugins/com.brodysoft.sqlitePlugin/www \
+/home/yosef/NetBeansProjects/Camera/platforms/android/assets/www/plugins/com.brodysoft.sqlitePlugin/www/SQLitePlugin.js \
 /home/yosef/NetBeansProjects/Camera/platforms/android/assets/www/plugins/org.apache.cordova.file-transfer/www \
 /home/yosef/NetBeansProjects/Camera/platforms/android/assets/www/plugins/org.apache.cordova.file-transfer/www/FileTransferError.js \
 /home/yosef/NetBeansProjects/Camera/platforms/android/assets/www/plugins/org.apache.cordova.file-transfer/www/FileTransfer.js \

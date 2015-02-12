@@ -44,8 +44,7 @@ function imatge(idImatge, titol, image, descripcio, latitude, longitude) {
             this.descripcio = descripcio,
             this.lat = latitude;
     this.long = longitude;
-}
-;
+};
 
 var ferFoto = function () {
 
@@ -101,7 +100,6 @@ var mostrarLesDadesSql = function () {
     for (imatge in imatges) {
         cam.innerHTML += imatge.idImatge + '<br>' + imatge.image + '<br>' + imatge.descripcio + '<br>' + imatge.lat + ',' + imatge.long + '<br>';
     }
-
 };
 var obtenirCoordenades = function () {
     alert('buscant ubicacio...');
